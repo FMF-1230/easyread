@@ -1,0 +1,23 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # 拉取最新程式碼
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'  # 指定 Python 版本
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # 安裝必要套件
+
+      - name: Run tests
+        run: pytest  # 自動執行測試
